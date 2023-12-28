@@ -2,11 +2,11 @@ from sympy import symbols, evalf
 import sys
 
 def FibonacciNumber(N):
-    F=[1,1]
-    i=0
-    while i<N-1:
-        F.append(F[i]+F[i+1])
-        i+=1
+    F = 0
+    if (N == 0 or N == 1):
+        F = 1
+    else:
+        F = FibonacciNumber(N-1)+FibonacciNumber(N-2)
     return F
 
 
@@ -26,10 +26,10 @@ afterpoint = abs(estr.find('.') - len(estr)) - 1
 minFib = delta/e
 print("Число Фибоначчи не менее: ", minFib)
 i=0
-fib=FibonacciNumber(i)[i]
+fib = FibonacciNumber(i)
 while fib<minFib:
     i+=1
-    fib = FibonacciNumber(i)[i]
+    fib = FibonacciNumber(i)
 print("Подходящее число Фибоначчи: ", fib)
 NumberOfIter = i-1
 print("Количество итераций: ", NumberOfIter-1)
@@ -39,8 +39,8 @@ betha = 0
 
 while i<(NumberOfIter-1):
     flag = True
-    alpha = a+(FibonacciNumber(NumberOfIter - i - 1)[NumberOfIter - i - 1]/FibonacciNumber(NumberOfIter - i + 1)[NumberOfIter - i + 1])*delta
-    betha = a+(FibonacciNumber(NumberOfIter - i)[NumberOfIter - i]/FibonacciNumber(NumberOfIter - i + 1)[NumberOfIter - i + 1])*delta
+    alpha = a + (FibonacciNumber(NumberOfIter - i - 1)/ FibonacciNumber(NumberOfIter - i + 1)) * delta
+    betha = a+(FibonacciNumber(NumberOfIter - i)/FibonacciNumber(NumberOfIter - i + 1))*delta
     alpha = round(alpha,6)
     betha = round(betha,6)
 
